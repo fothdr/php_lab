@@ -19,7 +19,7 @@
 <div class="container">
 <div class="list-group">
   <a href="lab1.php" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-    <img src="https://cdn-icons.flaticon.com/png/128/5948/premium/5948230.png?token=exp=1638700220~hmac=1ed556defaecda5d42f9b4c913cec08a" alt="twbs" width="32" height="32" >
+   <img src="img/number-1.png" alt="twbs" width="32" height="32" >
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
         <h6 class="mb-0">Лабораторная работа №1</h6>
@@ -29,7 +29,7 @@
     </div>
   </a>
   <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-    <img src="https://cdn-icons.flaticon.com/png/128/5948/premium/5948235.png?token=exp=1638700220~hmac=2482f8fce5c4a891a286ad45c483a9d3" alt="twbs" width="32" height="32" >
+   <img src="img/number-2.png" alt="twbs" width="32" height="32" >
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
         <h6 class="mb-0">Лабораторная работа №2</h6>
