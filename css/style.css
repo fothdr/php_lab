@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, #cfecd0, #a0cea7, #9ec0db);
+  
+  
+}
+.info h2 {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 25px 0px 20px 0px;
+}
+.info p {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 25px;
+}
+.container {
+    
+    max-width: 600px;
+   
+}
