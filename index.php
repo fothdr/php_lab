@@ -28,12 +28,12 @@
       
     </div>
   </a>
-  <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+  <a href="lab2.php" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
    <img src="img/number-2.png" alt="twbs" width="32" height="32" >
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
         <h6 class="mb-0">Лабораторная работа №2</h6>
-        <p class="mb-0 opacity-75">Некоторый заполнитель в абзаце</p>
+        <p class="mb-0 opacity-75">*выполнена*</p>
       </div>
     </div>
   </a>
