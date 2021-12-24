@@ -37,6 +37,15 @@
       </div>
     </div>
   </a>
+    <a href="lab3.php" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+    <img src="img/number-3.png" alt="twbs" width="32" height="32" >
+    <div class="d-flex gap-2 w-100 justify-content-between">
+      <div>
+        <h6 class="mb-0">Лабораторная работа №3</h6>
+        <p class="mb-0 opacity-75">*в процессе*</p>
+      </div>
+    </div>
+  </a>
 </div>
 </div>
 </body>
