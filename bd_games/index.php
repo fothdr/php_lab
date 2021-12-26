@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['login'])) {
+  $_SESSION['msg']="Требуется авторизация!";
+  header('Location: auth.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,20 +16,29 @@
 </head>
 <body>
 
-<div style="max-width: 600px; margin: 0 auto;">
-<a href="/" style="text-decoration:none; margin-top: 10px; margin-bottom: 0px;"><p style="margin-top: 10px; margin-bottom: 0px;">Назад на главную страницу</p></a>
+<div class="container" style="margin: 0 auto;">
+<h3 style="margin: 0 auto; display: flex; justify-content: center;">Здравствуйте, <?php echo $_SESSION['login']; ?></h3>
+<div style="display: flex; justify-content: center;">
+<?php if ($_SESSION['type']=="2"): ?>
+<a href="admin_users.php" style="margin: 5px;" class="btn btn-outline-dark">Список пользователей</a>
+<?php endif; ?>
+<a href="myacc.php" style="margin: 5px;" class="btn btn-outline-dark">Личные данные</a>
+<a href="sess_exit.php" style="margin: 5px;" class="btn btn-outline-danger">Выход</a>
+</div>
+
+<a href="/" style="text-decoration:none;"><span style="margin-top: 10px; margin-bottom: 0px;">Назад на главную страницу</span></a>
 <?php
-    mysql_connect("localhost", "f0606542_bd", "WYEBqFkb", "f0606542_bd") or die ("Невозможно подключиться к серверу"); // установление соединения с сервером
+    mysql_connect("localhost", "f0606542_bd", "h3t6baLp", "f0606542_bd") or die ("Невозможно подключиться к серверу"); // установление соединения с сервером
     mysql_query('SET NAMES UTF-8'); // тип кодировки
     // подключение к базе данных:
     mysql_select_db("f0606542_bd") or die("Нет такой таблицы!");
     
 ?>
     <h2>Список игр</h2>
-    <table border="1" class="table table-bordered" style="max-width: 600px; font-size: 14px; padding: 0; margin: 0;">
+    <table border="1" class="table table-bordered" style=" font-size: 14px; padding: 0; margin: 0;">
     <tr> 
     <th> Название </th> <th> Жанр </th> <th> Разработчик</th> <th> Издатель</th> <th> Объем продаж</th>
-    <th> Редактировать </th> <th> Удалить </th> </tr>
+    <th> Редактировать </th> <?php if ($_SESSION['type']=="2"): ?><th> Удалить </th><?php endif; ?> </tr>
     <?php
     $result=mysql_query("SELECT id, name, genre, dev, publ, sales FROM games"); // запрос на выборку сведений о пользователях
     while ($row=mysql_fetch_array($result)){// для каждой строки из запроса
@@ -34,8 +50,10 @@
     echo "<td>" . $row['sales'] . "</td>";
     echo "<td><a href='edit.php?id=" . $row['id']
     . "'>Редактировать</a></td>"; // запуск скрипта для редактирования
+    if ($_SESSION['type']=="2") {
     echo "<td><a href='delete.php?id=" . $row['id']
     . "'>Удалить</a></td>"; // запуск скрипта для удаления записи
+    }
     echo "</tr>";
     }
     print "</table>";
@@ -62,10 +80,10 @@
   <button onclick='closeForm()' class="btn btn-outline-danger">Скрыть форму добавления игры</button>
 </div>
 <h2>Список магазинов</h2>
-    <table border="1" class="table table-bordered" style="max-width: 600px; font-size: 14px; padding: 0; margin: 0;">
+    <table border="1" class="table table-bordered" style="font-size: 14px; padding: 0; margin: 0;">
     <tr> 
     <th> Название </th> <th> Ссылка </th> 
-    <th> Редактировать </th> <th> Удалить </th> </tr>
+    <th> Редактировать </th> <?php if ($_SESSION['type']=="2"): ?><th> Удалить </th><?php endif; ?> </tr>
     <?php
     $result=mysql_query("SELECT * FROM digital_shop"); // запрос на выборку сведений о пользователях
     while ($row=mysql_fetch_array($result)){// для каждой строки из запроса
@@ -74,8 +92,10 @@
     echo "<td>" . $row['url'] . "</td>";
     echo "<td><a href='shop_edit.php?id=" . $row['id']
     . "'>Редактировать</a></td>"; // запуск скрипта для редактирования
+    if ($_SESSION['type']=="2") {
     echo "<td><a href='shop_delete.php?id=" . $row['id']
     . "'>Удалить</a></td>"; // запуск скрипта для удаления записи
+    }
     echo "</tr>";
     }
     print "</table>";
@@ -96,10 +116,10 @@
   <button onclick='closeForm2()' class="btn btn-outline-danger">Скрыть форму добавления магазина</button>
 </div>
 <h2>Список цифровых ключей</h2>
-    <table border="1" class="table table-bordered" style="max-width: 600px; font-size: 14px; padding: 0; margin: 0;">
+    <table border="1" class="table table-bordered" style="font-size: 14px; padding: 0; margin: 0;">
     <tr> 
     <th> Игра </th> <th> Магазин </th> <th> Стоимость </th> <th> Ключ </th> <th> Дата приобретения </th> <th> Дата окончания </th>
-    <th> Редактировать </th> <th> Удалить </th> </tr>
+    <th> Редактировать </th> <?php if ($_SESSION['type']=="2"): ?><th> Удалить </th><?php endif; ?> </tr>
     <?php
     $result=mysql_query("SELECT digital_key.id, games.name AS gname, games.id AS gameid, digital_shop.id AS shopid, digital_shop.name AS sname, digital_key.price, digital_key.startd, digital_key.endd, digital_key.gamekey FROM digital_key INNER JOIN digital_shop ON digital_key.shopid=digital_shop.id INNER JOIN games ON digital_key.gameid=games.id"); 
     
@@ -113,8 +133,10 @@
     echo "<td>" . $row['endd'] . "</td>";
     echo "<td><a href='keys_edit.php?id=".$row['id']
     . "&gameid=". $row['gameid'] . "&shopid=". $row['shopid'] ."'>Редактировать</a></td>"; // запуск скрипта для редактирования
+    if ($_SESSION['type']=="2") {
     echo "<td><a href='keys_delete.php?id=". $row['id']
     . "'>Удалить</a></td>"; // запуск скрипта для удаления записи
+    }
     echo "</tr>";
     }
     print "</table>";
